@@ -15,4 +15,4 @@ Cara penggunaan :
 3. Tentukan pilihan dan submit
 4. Tunggu pesan konfirmasi pada laman `/submit.php`
 
--GaneshaVote v0.01
+-SPARTAVote v0.01
