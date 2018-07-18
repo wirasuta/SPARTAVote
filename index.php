@@ -11,7 +11,8 @@
     $res = curl_exec($curl);
     if (!strpos($res, 'INVALID_TICKET')) {
       $resarr = explode(' ',$res);
-      $nim = array_values(array_slice($resarr, -33))[0];
+      $tmnim = array_values(array_slice($resarr, -33))[0];
+      $nim = explode('<',explode('>',$tmnim)[1])[0];
     }
     curl_close($curl);
   }
@@ -28,33 +29,50 @@
 <body>
   <header>
     <div class="container">
-      <div id="header-row" class="row end-xs">
+      <div class="row end-xs" id="header-row" >
         <div class="col-xs-2">
-          <div id="header-title" class="box"><b>GaneshaVote</b></div>
+          <div class="box" id="header-title" ><b>GaneshaVote</b></div>
         </div>
-        <?if ((!strpos($res, 'INVALID_TICKET')) && (isset($_GET['ticket']))):?>
         <div class="col-xs-10">
+        <?if ((!strpos($res, 'INVALID_TICKET')) && (isset($_GET['ticket']))):?>
           <span>Logged in as <?php echo $nim;?></span>
-        </div>
         <?php endif;?>
+        </div>
       </div>
     </div>
   </header>
-  <div id="main" class="container">
+  <div class="container" id="main">
   <?if ((!strpos($res, 'INVALID_TICKET')) && (isset($_GET['ticket']))): ?>
-    <div class="row center-xs">
+    <div class="row center-xs votebox">
       <div class="col-xs-6">
-        <img src="" alt="">
-        <span>PASLON 1</span>
+        <div class="box">
+          <img src="example-res/face1.png" class="fotopaslon"><br>
+          <span>AGUS DOE</span>
+        </div>
       </div>
       <div class="col-xs-6">
-        <span>PASLON 2</span>
+        <div class="box">
+          <img src="example-res/face2.jpeg" class="fotopaslon"><br>
+          <span>JOHN FULAN</span>
+        </div>
       </div>
     </div>
-  </div>
-  <div id="bottom" class="container">
     <form action="submit.php" method="post">
-        <input type="submit" name="submit" value="submit">
+      <div class="row center-xs votebox">
+        <div class="col-xs-6">
+          <input type="radio" name="choice" value="1"><b>PASLON 1</b>
+        </div>
+        <div class="col-xs-6">
+          <input type="radio" name="choice" value="2"><b>PASLON 2</b>
+        </div>
+      </div>
+      <div class="row center-xs votebox">
+        <div class="col">
+          <input type="hidden" name="nim" value="<?php echo $nim;?>">
+          <input type="hidden" name="ticket" value="<?php echo $ticket;?>">
+          <input type="submit">
+        </div>
+      </div>
     </form>
   </div>
   <?php else:?>

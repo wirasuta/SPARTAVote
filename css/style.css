@@ -24,16 +24,16 @@ header{
   margin: auto;
 }
 
-#header-title{
-  justify-content: flex-start;
+.fotopaslon{
+  min-height: 70vh;
+  max-width: 100%;
+}
+
+.votebox{
+  background-color: #ccc;
 }
 
 #main{
-  height: 80vh;
-  background-color: #bbb;
-}
-
-#bottom{
-  height: 12vh;
+  height: 92vh;
   background-color: #dee8f7;
 }
