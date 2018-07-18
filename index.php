@@ -1,18 +1,18 @@
 <?php
-  $baseurl = 'https://d7bb2858.ngrok.io/web/SPARTAVote/SPARTAVote/index.php';
-  $loginurl = 'https://login.itb.ac.id/cas/login?service='.$baseurl;
-  $res = '';
-  if(isset($_GET['ticket'])){
-    $ticket = $_GET['ticket'];
-    $credurl = 'https://login.itb.ac.id/cas/serviceValidate?ticket='.$ticket.'&service='.$baseurl;
+  $baseurl = "https://d7bb2858.ngrok.io/web/SPARTAVote/SPARTAVote/index.php";
+  $loginurl = "https://login.itb.ac.id/cas/login?service=".$baseurl;
+  $res = "";
+  if(isset($_GET["ticket"])){
+    $ticket = $_GET["ticket"];
+    $credurl = "https://login.itb.ac.id/cas/serviceValidate?ticket=".$ticket."&service=".$baseurl;
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $credurl);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $res = curl_exec($curl);
-    if (!strpos($res, 'INVALID_TICKET')) {
-      $resarr = explode(' ',$res);
+    if (!strpos($res, "INVALID_TICKET")) {
+      $resarr = explode(" ",$res);
       $tmnim = array_values(array_slice($resarr, -33))[0];
-      $nim = explode('<',explode('>',$tmnim)[1])[0];
+      $nim = explode("<",explode(">",$tmnim)[1])[0];
     }
     curl_close($curl);
   }
@@ -34,7 +34,7 @@
           <div class="box" id="header-title" ><b>GaneshaVote</b></div>
         </div>
         <div class="col-xs-10">
-        <?if ((!strpos($res, 'INVALID_TICKET')) && (isset($_GET['ticket']))):?>
+        <?if ((!strpos($res, "INVALID_TICKET")) && (isset($_GET["ticket"]))):?>
           <span>Logged in as <?php echo $nim;?></span>
         <?php endif;?>
         </div>
@@ -42,7 +42,7 @@
     </div>
   </header>
   <div class="container" id="main">
-  <?if ((!strpos($res, 'INVALID_TICKET')) && (isset($_GET['ticket']))): ?>
+  <?if ((!strpos($res, "INVALID_TICKET")) && (isset($_GET["ticket"]))): ?>
     <div class="row center-xs votebox">
       <div class="col-xs-6">
         <div class="box">
@@ -78,7 +78,7 @@
   <?php else:?>
     <div class="row center-xs">
         <div class="col">
-          <span>You're not logged in. Click <a href="<?php echo $loginurl;?>">here</a> to login!</span>
+          <span>You"re not logged in. Click <a href="<?php echo $loginurl;?>">here</a> to login!</span>
         </div>
     </div>
   </div>
