@@ -1,15 +1,18 @@
 <?php
 #DATABASE CREDENTIALS#
-$servername = "localhost";
-$dbname = "phpsandbox";
+$servername = "serverlocation";
+$dbname = "spartavote";
 $username = "root";
 $password = "12345";
 
   if(isset($_POST["choice"]) && isset($_POST["nim"]) && isset($_POST["ticket"])){
+    $choice = $_POST["choice"];
+    $nim = $_POST["nim"];
+    $ticket = $_POST["ticket"];
+
     #CONNECT TO DATABASE WITH PDO#
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-      // set the PDO error mode to exception
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch(PDOException $e){
@@ -28,9 +31,9 @@ $password = "12345";
     if (($chk->rowCount()) === 0) {
       $ins->bindValue(":nim", $nim,PDO::PARAM_STR);
       $ins->bindValue(":ssoticket", $ticket,PDO::PARAM_STR);
-      $ins->bindValue(":ssoticket", $choice,PDO::PDO::PARAM_INT);
+      $ins->bindValue(":vote", $choice,PDO::PARAM_INT);
       $ins->execute();
-      echo "Vote from ".$nim."has been recorded succesfully";
+      echo "Vote from ".$nim." has been recorded succesfully";
     }else{
       die("You have voted before. Only one vote per person");
     }
