@@ -1,0 +1,39 @@
+body{
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #dee8f7;
+}
+
+a{
+  text-decoration: none;
+}
+
+header{
+  height: 8vh;
+  width: 100vw;
+  background-color: #dee8f7;
+  text-align: center;
+  font-size: 20px;
+}
+
+.container{
+  background-color: #dee8f7;
+  width: 80vw;
+  margin: auto;
+}
+
+#header-title{
+  justify-content: flex-start;
+}
+
+#main{
+  height: 80vh;
+  background-color: #bbb;
+}
+
+#bottom{
+  height: 12vh;
+  background-color: #dee8f7;
+}
